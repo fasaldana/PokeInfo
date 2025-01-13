@@ -26,11 +26,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
     ],
   },
+  resolve: {
+    extensions: [".js", ".jsx"],
+  },
   devServer: {
+    historyApiFallback: true,
     port: 3000,
   },
 };
