@@ -1,6 +1,7 @@
 // webpack.config.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: path.join(__dirname, "src", "index.js"),
@@ -10,6 +11,17 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "public", "index.html"),
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.join(__dirname, "public"),
+          to: ".",
+          globOptions: {
+            ignore: ["**/index.html"],
+          },
+        },
+      ],
     }),
   ],
   module: {
